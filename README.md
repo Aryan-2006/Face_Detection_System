@@ -12,7 +12,7 @@ This project is a comprehensive attendance system that uses real-time face recog
 
 ✍️ Automatic Attendance Logging: Detects known individuals and logs their attendance with a timestamp.
 
-💾 Flexible Database Support: Easily configurable to work with a local MongoDB or MySQL server.
+☁️ Cloud Database: Utilises a Redis cloud database for storing facial data and attendance logs, making it accessible from anywhere.
 
 🛠️ Tech Stack
 Backend: Python 🐍
@@ -21,7 +21,7 @@ Frontend: Streamlit 🎈
 
 Face Recognition: InsightFace, OpenCV
 
-Database: MongoDB / MySQL (configurable)
+Database: Redis ⚡
 
 Libraries: Streamlit-Webrtc, Pandas, NumPy
 
@@ -31,20 +31,20 @@ Follow these steps to get the project running on your local machine.
 1. Prerequisites
 🐍 Python 3.8+: Make sure you have Python installed.
 
-🗄️ MongoDB or MySQL: Install and run a local instance of your chosen database.
+☁️ Redis Cloud Account: This project uses a cloud-hosted Redis instance for data storage.
 
-Install MongoDB Community Edition
+Sign up for a free account at Redis Enterprise Cloud.
 
-[suspicious link removed]
+Create a new subscription and database.
 
-2. Clone the Repository
-git clone <your-repository-url>
-cd <your-repository-name>
+Note down your database Hostname, Port, and Password.
 
-3. Download the buffalo_l Model
+
+
+2. Download the buffalo_l Model
 The InsightFace buffalo_l model is required for face analysis. It is too large to be included in the repository.
 
-🔗 Download Link: Download buffalo_l Model Files from Google Drive
+🔗 Download Link: https://drive.google.com/drive/folders/1E5eOEcBT603R2t2gfFYuya_ONtNwl4bz?usp=sharing
 
 📍 Placement:
 
@@ -74,13 +74,21 @@ your-project-root/
 ├── face_rec_merged.py
 └── ... other files
 
-4. Install Dependencies
+3. Install Dependencies
 Install all the required Python libraries using the provided requirements.txt file.
 
 pip install -r requirements.txt
 
-5. Configure the Database
-Open the face_rec_merged.py file and update the database connection details to point to your local MongoDB or MySQL instance. (Instructions for this are in the code comments).
+4. Configure the Database
+Open the face_rec_merged.py file and update the Redis connection details with your own credentials from your Redis Cloud account.
+
+# --- Configuration and Initialization ---
+
+# Connect to Redis Client
+# Replace with your actual Redis credentials
+HOSTNAME = 'your-redis-hostname'
+PORTNUMBER = your-redis-port
+PASSWORD = 'your-redis-password'
 
 ▶️ How to Run the Application
 Open your terminal in the project's root directory.
@@ -98,6 +106,10 @@ Attendance: Go to the "Attendance" page. The system will start the webcam and au
 
 🗂️ File Structure
 app.py: The main Streamlit application file. It handles the UI and page navigation.
+
+face_rec_merged.py: The backend logic for the application. It contains all the code for face detection, recognition, and database interactions.
+
+requirements.txt: A list of all Python dependencies for the project.
 
 face_rec_merged.py: The backend logic for the application. It contains all the code for face detection, recognition, and database interactions.
 
